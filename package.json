@@ -1,11 +1,13 @@
 {
-  "name": "task-app",
+  "homepage": "http://shreyashkothavale.github.io/tasks-app",
+  "name": "tasks-app",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "framer-motion": "10.9.1",
+    "gh-pages": "^5.0.0",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -19,6 +21,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
