@@ -17,8 +17,8 @@ function Reminder() {
     {
       id: 0,
       name: "All",
-      tasks: [{ taskId: taskId, task: "Start Adding tasks" }]
-    }
+      tasks: [{ taskId: taskId, task: "Start Adding tasks" }],
+    },
   ]);
   const [isMenuActive, setIsMenuActive] = useState(true);
   const [active, setActive] = useState(links[0].id);
@@ -47,8 +47,8 @@ function Reminder() {
         {
           id: linksId,
           name: inputVal,
-          tasks: []
-        }
+          tasks: [],
+        },
       ]);
 
       setInputVal("");
@@ -61,7 +61,7 @@ function Reminder() {
 
       const newTask = {
         taskId: generateRandomId(),
-        task: taskVal
+        task: taskVal,
       };
       // console.log(links);
       const updatedLinks = [...links];
@@ -94,10 +94,12 @@ function Reminder() {
                 return (
                   <li
                     className={`${active === item.id ? "active link" : "link"}`}
-                    onClick={() =>{ setActive(item.id)
-                    if(openTasksInput){
-                      setOpenTaskInput(false)
-                    }
+                    onClick={() => {
+                      setActive(item.id);
+                      if (openTasksInput) {
+                        setOpenTaskInput(false);
+                        setInputVal(false);
+                      }
                     }}
                     key={index}
                   >
@@ -131,7 +133,16 @@ function Reminder() {
               )}
             </div>
             <div className="bottom">
-              <button onClick={() => setOpenInput(true)}>Add</button>
+              <button onClick={() => setOpenInput(true)}>
+                {" "}
+                <span>
+                  <HiPlus
+                    style={{ display: "flex", color: "#FFF" }}
+                    fontSize={16}
+                  />
+                </span>{" "}
+                Add List
+              </button>
             </div>
           </motion.div>
         )}
@@ -151,7 +162,7 @@ function Reminder() {
             <div
               className="heading"
               style={{
-                width: "50%"
+                width: "50%",
               }}
             >
               <h3
@@ -159,7 +170,7 @@ function Reminder() {
                   width: "150px",
                   whiteSpace: "nowrap",
                   overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  textOverflow: "ellipsis",
                 }}
               >
                 {links.map((item, index) =>
@@ -172,8 +183,13 @@ function Reminder() {
                 onClick={() => {
                   setOpenTaskInput(true);
                 }}
+                disabled={isLoading}
               >
-                Add New Task
+                <HiPlus
+                  style={{ display: "flex", color: "black" }}
+                  fontSize={16}
+                />{" "}
+                Add Task
               </button>
             </div>
           </div>
@@ -192,15 +208,15 @@ function Reminder() {
                           variants={{
                             hidden: {
                               opacity: 0,
-                              y: -20
+                              y: -20,
                             },
                             visible: (index) => ({
                               opacity: 1,
                               y: 0,
                               transition: {
-                                delay: index * 0.05
-                              }
-                            })
+                                delay: index * 0.05,
+                              },
+                            }),
                           }}
                           initial="hidden"
                           animate="visible"
@@ -246,7 +262,7 @@ function Reminder() {
                               variants={{
                                 hidden: {
                                   opacity: 0,
-                                  y: -20
+                                  y: -20,
                                 },
                                 visible: (i) => ({
                                   opacity: 1,
@@ -255,9 +271,9 @@ function Reminder() {
                                     delay:
                                       links[active]?.tasks.length > 0
                                         ? links[active]?.tasks.length * 0.05
-                                        : i * 0.05
-                                  }
-                                })
+                                        : i * 0.05,
+                                  },
+                                }),
                               }}
                               initial="hidden"
                               animate="visible"
@@ -284,7 +300,7 @@ function Reminder() {
                     width: "80%",
                     border: "none",
                     background: "transparent",
-                    outline: "none"
+                    outline: "none",
                   }}
                   value={taskVal}
                   onChange={(e) => {
