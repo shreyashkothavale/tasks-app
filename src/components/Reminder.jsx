@@ -94,7 +94,11 @@ function Reminder() {
                 return (
                   <li
                     className={`${active === item.id ? "active link" : "link"}`}
-                    onClick={() => setActive(item.id)}
+                    onClick={() =>{ setActive(item.id)
+                    if(openTasksInput){
+                      setOpenTaskInput(false)
+                    }
+                    }}
                     key={index}
                   >
                     <p>{item.name}</p>
